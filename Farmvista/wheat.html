@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wheat Production Analysis in Maharashtra</title>
+    <!-- Include Chart.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* Reset basic elements for consistency across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #ecf0f1;
+    color: #2c3e50;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+nav {
+    background-color: #2980b9;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav h1 {
+    color: #fff;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+nav a {
+    margin-top: 10px;
+    color: #ecf0f1;
+    text-decoration: none;
+    font-size: 16px;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    font-weight: 500;
+}
+
+nav a:hover {
+    background-color: #3498db;
+    transform: translateY(-2px);
+}
+
+.chart-container {
+    max-width: 800px;
+    height: 450px;
+    margin: 40px auto;
+    background-color: #fff;
+    padding: 30px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.chart-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.chart-container h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2980b9;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.chart-container p {
+    text-align: center;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #7f8c8d;
+}
+
+@media (max-width: 768px) {
+    .chart-container {
+        width: 95%;
+        margin: 30px auto;
+        padding: 25px;
+    }
+    
+    .chart-container h2 {
+        font-size: 22px;
+    }
+}
+
+@media (max-width: 480px) {
+    nav h1 {
+        font-size: 22px;
+    }
+
+    nav a {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    .chart-container {
+        height: 380px;
+        padding: 20px;
+    }
+
+    .chart-container h2 {
+        font-size: 20px;
+    }
+
+    .chart-container p {
+        font-size: 14px;
+    }
+}
+
+/* Animation for the chart */
+.chart-container {
+    animation: fadeIn 1s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Enhancing accessibility */
+nav a:focus, nav a:active {
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    background-color: #3498db;
+}
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation and Title -->
+    <nav>
+        <div class="container">
+            <h1>Wheat Production Analysis in Maharashtra Divisions</h1>
+        </div>
+        <a href="crop_statistics.html">Back</a>
+    </nav>
+
+    <!-- Chart Containers for each division -->
+    <div class="chart-container">
+        <canvas id="puneChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="nagpurChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="aurangabadChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="amravatiChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="nashikChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <canvas id="konkanChart"></canvas>
+    </div>
+
+    <!-- JavaScript to render the Chart.js bar charts -->
+    <script>
+        // Example data structure for factors affecting wheat production in different divisions
+        // Impact score out of 100 based on suitability
+        const wheatData = {
+            Pune: [90, 85, 88, 92, 87],        // High suitability
+            Nagpur: [75, 70, 78, 72, 73],     // Medium suitability
+            Aurangabad: [78, 74, 75, 76, 72], // Medium suitability
+            Amravati: [88, 84, 85, 89, 82],   // High suitability
+            Nashik: [85, 80, 83, 87, 81],     // High suitability
+            Konkan: [65, 60, 62, 68, 59]      // Low suitability
+        };
+
+        // Factors affecting wheat production
+        const factors = [
+            "Climate and Weather Conditions",
+            "Soil Quality",
+            "Pest and Disease Management",
+            "Agricultural Practices",
+            "Seed Quality"
+        ];
+
+        // Suitability data for each division
+        const suitabilityData = {
+            Pune: "High",
+            Nagpur: "Medium",
+            Aurangabad: "Medium",
+            Amravati: "High",
+            Nashik: "High",
+            Konkan: "Low"
+        };
+
+        // Function to create a chart for each division
+        function createChart(chartId, division) {
+            const ctx = document.getElementById(chartId).getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: factors,
+                    datasets: [{
+                        label: `${division} Division - Wheat Production Factors`,
+                        data: wheatData[division],
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.2)',
+                            'rgba(54, 162, 235, 0.2)',
+                            'rgba(255, 206, 86, 0.2)',
+                            'rgba(75, 192, 192, 0.2)',
+                            'rgba(153, 102, 255, 0.2)'
+                        ],
+                        borderColor: [
+                            'rgba(255, 99, 132, 1)',
+                            'rgba(54, 162, 235, 1)',
+                            'rgba(255, 206, 86, 1)',
+                            'rgba(75, 192, 192, 1)',
+                            'rgba(153, 102, 255, 1)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: `${division} Division - Suitability for Wheat Production: ${suitabilityData[division]}`,
+                            padding: {
+                                top: 10,
+                                bottom: 30
+                            },
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            },
+                            color: '#333'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Factors Affecting Wheat Production'
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Impact Score'
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Create charts for all divisions
+        createChart('puneChart', 'Pune');
+        createChart('nagpurChart', 'Nagpur');
+        createChart('aurangabadChart', 'Aurangabad');
+        createChart('amravatiChart', 'Amravati');
+        createChart('nashikChart', 'Nashik');
+        createChart('konkanChart', 'Konkan');
+    </script>
+
+</body>
+</html>

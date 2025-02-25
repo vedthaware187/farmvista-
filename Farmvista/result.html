@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/templates/static/css/result.css">
+    <title>Crop Forecasting</title>
+</head>
+<body>
+    <div class="nav"><a href="homepage.html">Home</a></div>
+    <div class="date">{{ month }} / {{ year }}</div>
+    <div class="commoditycontainer">
+
+        <!-- This section displays the image based on the selected crop -->
+        <div id="cropimg" class="commodityimg">
+            <img src="{{ cropface }}" alt="Crop Image">
+        </div>
+
+        <div class="currcommoditystatistics">
+            {% if prediction %}
+            <div class="currAvgprice"><p>Average Price</p>{{ avg_value }} /quintal</div>
+            <div class="minprice"><p>Min Price</p>{{ min_value }} /quintal</div>
+            <div class="maxprice"><p>Max Price</p>{{ max_value }} /quintal</div>
+            {% endif %}
+        </div>
+        <div class="maxminyear">
+            <p class="type">Maximum Price</p>
+            <div class="max">
+                <p>Month: {{ goldmonth }}</p>
+                <p>Price: {{ maxlow }} - {{ maxhigh }} /quintal</p>
+                <p>Expected rainfall: Medium</p>
+            </div>
+            <p class="type">Minimum Price</p>
+            <div class="min">
+                <p>Month: {{ silvermonth }}</p>
+                <p>Price: {{ minlow }} - {{ minhigh }} /quintal</p>
+                <p>Expected rainfall: Medium</p>
+            </div>
+            <p class="condition">If there is a variation in actual rainfall and expected rainfall, then the prediction may go wrong.</p>
+        </div>
+    </div>
+
+    <div class="prevyeargraph">
+        <h2 style="font-family:sans-serif;font-weight:600;color: blueviolet;">Price Analysis of Current Year - {{ year }}</h2>
+        <div style="width:800px !important;height:400px !important;">
+            <canvas id="myChart"></canvas>
+        </div>
+    </div>
+
+    <div class="nextyeargraph">
+        <h2 style="font-family:sans-serif;font-weight:600;color: blueviolet;">Price Analysis of Upcoming Year - {{ NextYear }}</h2>
+        <div style="width:800px !important;height:400px !important;">
+            <canvas id="myChart1"></canvas>
+        </div>
+    </div>
+
+    <footer></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Handling data for the current year chart
+        const mspyear = {{ mspyear|tojson }};
+        const avgPriceyear = {{ minPriceYear|tojson }};
+        
+        const ctx = document.getElementById("myChart").getContext('2d');
+        new Chart(ctx, {
+            type: "line",
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [
+                    {
+                        label: "Max crop price per quintal",
+                        data: mspyear,
+                        borderColor: '#36A2EB',
+                        backgroundColor: '#9BD0F5',
+                    },
+                    {
+                        label: "Min crop price per quintal",
+                        data: avgPriceyear,
+                        borderColor: '#FF6384',
+                        backgroundColor: '#FFB1C1',
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+
+        // Handling data for the next year chart
+        const mspnextyear = {{ mspnextyear|tojson }};
+        const avgPriceNextyear = {{ minPriceNextYear|tojson }};
+        
+        const ctx1 = document.getElementById("myChart1").getContext('2d');
+        new Chart(ctx1, {
+            type: "line",
+            data: {
+                labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+                datasets: [
+                    {
+                        label: "Max crop price per quintal",
+                        data: mspnextyear,
+                        borderColor: '#36A2EB',
+                        backgroundColor: '#9BD0F5',
+                    },
+                    {
+                        label: "Min crop price per quintal",
+                        data: avgPriceNextyear,
+                        borderColor: '#FF6384',
+                        backgroundColor: '#FFB1C1',
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    },
+                },
+            },
+        });
+    </script>
+</body>
+</html>

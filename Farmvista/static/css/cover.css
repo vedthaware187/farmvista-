@@ -1,0 +1,96 @@
+/* Ensure full height for the body and html */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #ffffff;
+  background-image: url('C:\xampp\htdocs\agri\GB_96TBXEAIIcgU.jpeg'); /* Replace with the path to your background image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+bodycover {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.masthead {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.masthead .masthead-brand {
+  margin-bottom: 0;
+  font-size: 2rem;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.masthead .nav-link {
+  font-size: 1.2rem;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+}
+
+.masthead .nav-link:hover {
+  color: #cccccc;
+}
+
+.cover {
+  text-align: center;
+  margin: auto;
+}
+
+.cover-heading {
+  font-size: 3rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.lead {
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.btn-secondary {
+  background-color: #28a745;
+  border-color: #28a745;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+.mastfoot {
+  color: #ffffff;
+  text-align: center;
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+/* Add a shadow to buttons */
+.btn {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cover-heading {
+      font-size: 2.5rem;
+  }
+
+  .lead {
+      font-size: 1.3rem;
+  }
+
+  .btn-lg {
+      font-size: 1.2rem;
+      padding: 0.75rem 1.5rem;
+  }
+}

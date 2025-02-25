@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="FarmVista - Revolutionizing Agriculture">
+    <title>FarmVista</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/630e6cad6a.js" crossorigin="anonymous"></script>
+    <link rel=”stylesheet” href=”https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css” />
+
+    <meta name="theme-color" content="#712cf9">
+<style>
+  body {
+    color: #000000;
+    background-color: #E0F7FA;
+    font-family: 'Helvetica', sans-serif;
+  }
+  
+  ::-webkit-scrollbar {
+    background-color: #e6e2eb;
+    width: 5px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #afb5bd; 
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #B2EBF2; 
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #04C2C2;
+  }
+  
+  .carousel {
+    margin-bottom: 4rem;
+  }
+  
+  .carousel-caption {
+    bottom: 3rem;
+    z-index: 10;
+  }
+  
+  .carousel-item {
+    height: 32rem;
+    background-color: #777;
+  }
+  
+  .carousel-item > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 32rem;
+  }
+  
+  .login {
+    margin-right: 50px;
+  }
+  
+  .login a {
+    list-style: none;
+    text-decoration: none;
+  }
+  
+  .marketing .col-lg-4 {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .marketing h2 {
+    font-weight: 400;
+  }
+  
+  .marketing .col-lg-4 p {
+    margin-right: .75rem;
+    margin-left: .75rem;
+  }
+  
+  .featurette-divider {
+    margin: 5rem 0;
+  }
+  
+  .featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+  }
+  
+  @media (min-width: 40em) {
+    .carousel-caption p {
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+  
+    .featurette-heading {
+      font-size: 50px;
+    }
+  }
+  
+  @media (min-width: 62em) {
+    .featurette-heading {
+      margin-top: 7rem;
+    }
+  }
+  
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+  
+  .b-example-divider {
+    width: 100%;
+    height: 3rem;
+    background-color: rgba(0, 0, 0, .1);
+    border: solid rgba(0, 0, 0, .15);
+    border-width: 1px 0;
+    box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+  }
+  
+  .b-example-vr {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 100vh;
+  }
+  
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+  
+  nav {
+    position: relative; /* Changed from fixed to relative */
+    background-color: #4A90E2; /* Example blue background color */
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px; /* Padding for space on the sides */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Shadow for better visibility */
+  }
+  
+  nav .nav-2 {
+    margin: 0 15px; /* Spacing between navigation items */
+  }
+  
+  nav .nav-2 a {
+    font-size: 18px;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-block; /* Ensures items don't stretch */
+  }
+  
+  nav .nav-2 a:hover {
+    text-decoration: underline;
+  }
+  
+  .btn-bd-primary {
+    --bd-violet-bg: #712cf9;
+    --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+  
+    --bs-btn-font-weight: 600;
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--bd-violet-bg);
+    --bs-btn-border-color: var(--bd-violet-bg);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #6528e0;
+    --bs-btn-hover-border-color: #6528e0;
+    --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+    --bs-btn-active-color: var(--bs-btn-hover-color);
+    --bs-btn-active-bg: #5a23c8;
+    --bs-btn-active-border-color: #5a23c8;
+  }
+  
+  .bd-mode-toggle {
+    z-index: 1500;
+  }
+  
+  .otherserviceslist {
+    display: flex;
+    list-style: none;
+  }
+  
+  .otherservicescontent {
+    color: #9f9999;
+    text-decoration: none;
+    list-style: none;
+    display: flex;
+    padding-right: 30px;
+  }
+  
+  .otherservicescontent:hover {
+    color: rgb(198, 204, 210);
+  }
+  
+  .logo {
+    position: relative; /* Changed from fixed to relative */
+    margin: 0; /* Removed redundant zero values */
+    padding: 0; /* Removed redundant zero values */
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(135deg, #ff9933 33.3%, #ffffff 33.3% 66.6%, #138808 66.6%);
+    display: flex;
+    align-items: center; /* Ensures items are vertically centered */
+  }
+  .logoimg {
+    border-radius: 15%; /* Reduced radius for less rounded edges */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 10%;
+    height: auto;
+    margin-left: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    transition: transform 0.3s ease; /* Smooth hover effect */
+  }
+  
+  .logoimg img {
+    border: 3px solid rgb(254, 0, 0); /* Slightly thicker border for better definition */
+    border-radius: 15%; /* Reduced radius to match the parent container */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Ensure image covers the area without distortion */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+  }
+  
+  .logoimg:hover {
+    transform: scale(1.05); /* Slight zoom on hover */
+  }
+  
+  .logoimg img:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow on hover */
+    transform: scale(1.05); /* Slight zoom on hover */
+  }
+  
+  
+  .logotext {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:  #0033A0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    position: absolute;
+    left: 0;
+  }
+  
+  .middle {
+    border-radius: 5px;
+    width: 100%;
+    margin: 15px auto 10px auto;
+    height: 230px;
+    background-image: url(/static/images/wavegif.gif);
+    background-size: 20% 50%;
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .middle a {
+    text-decoration: none;
+  }
+  
+  .middle a h2 {  
+    padding: 10px;
+    color:  #1E90FF;
+    font-size: 30px;
+    font-family: sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+  }
+  
+  .navbarhomepage {
+    position: fixed;
+    top: 100px;
+    width: 100%;
+  }
+  
+  main {
+    margin-top: 150px;
+  }
+  
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .footerblock {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    justify-content: space-around;
+    align-items: center;
+  }
+  
+  .footerblock img {
+    border-radius: 10px;
+    border: 1px solid rgb(7, 109, 39);
+    width: calc(100% / 10);
+    height: 80%;
+  }
+  
+  .mycarousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 350px;
+    background-image: url(/static/images/grassbackgroundimg.jpg);
+    background-size: 100% 100%;
+  }
+  
+  .next_prevbtn {
+    display: flex;
+    width: 100%;
+    height: 50px;
+  }
+  
+  .next_prevbtn button {
+    padding: 5px;
+    border: 1px solid white;
+    background-color: #04C2C2;
+  }
+  
+  .prev {
+    cursor: pointer;
+    margin: 0px auto 0px 20px;
+    color: #48474b;
+  }
+  
+  .next {
+    cursor: pointer;
+    margin: 0px 20px 0px auto;
+    color: #48474b;
+  }
+
+
+.mycarousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    margin: 20px auto;
+}
+
+.carousel-image {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-image img {
+    width: 100%;
+    height: auto;
+}
+
+.next_prevbtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 0 20px;
+}
+
+.next_prevbtn button {
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.prev {
+    margin-right: auto;
+}
+
+.next {
+    margin-left: auto;
+}
+.mycarousel {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 350px;
+  background-image: url('/templates/static/images/grassbackgroundimg.jpg');
+  background-size: cover;
+  background-position: center;
+}
+
+.carousel-image {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  width: calc(100% * 8); /* Adjusted for 8 images */
+  height: 100%;
+}
+
+.carousel-image img {
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .mycarousel {
+      height: 250px;
+  }
+}
+
+.mycarousel::before, .mycarousel::after {
+  content: '';
+  position: absolute;
+  width: 100px;
+  height: 100%;
+  top: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.mycarousel::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.6), transparent);
+}
+
+.mycarousel::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.6), transparent);
+}
+/* Commodities Section */
+.commodities-section {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #f4f4f4, #e2e8f0);
+  text-align: center;
+}
+
+.commodities-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 40px;
+  color: #222;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.commodities-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+.commodity-item {
+  background: linear-gradient(135deg, #ffffff, #f7fafc);
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 0 15px rgba(173, 216, 230, 0.5); /* Light blue glow effect */
+  padding: 30px;
+  text-align: left;
+  max-width: 340px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  overflow: hidden;
+}
+
+.commodity-item:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25), 0 0 20px rgba(173, 216, 230, 0.7); /* Enhanced light blue glow on hover */
+}
+
+.commodity-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  margin-bottom: 20px;
+  transition: transform 0.4s ease;
+}
+
+.commodity-item:hover img {
+  transform: scale(1.1);
+}
+
+.commodity-item h3 {
+  margin: 15px 0;
+  font-size: 1.6em;
+  color: #333;
+  font-weight: 600;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.commodity-item p {
+  font-size: 1em;
+  line-height: 1.8;
+  color: #555;
+}
+
+.commodity-item p strong {
+  color: #000;
+  font-weight: 700;
+}
+
+/* Subtle Hover Animation */
+.commodity-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(173, 216, 230, 0.2); /* Light blue background light */
+  border-radius: 20px;
+  transform: scale(0);
+  transition: transform 0.4s ease-in-out;
+  z-index: 0;
+}
+
+.commodity-item:hover::before {
+  transform: scale(1);
+}
+
+.commodity-item * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .commodities-section {
+    padding: 40px 10px;
+  }
+
+  .commodities-section h2 {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+  }
+
+  .commodity-item {
+    max-width: 100%;
+  }
+
+  .commodity-item h3 {
+    font-size: 1.4em;
+  }
+
+  .commodity-item p {
+    font-size: 0.95em;
+  }
+}
+
+@media (max-width: 480px) {
+  .commodities-section h2 {
+    font-size: 1.8em;
+  }
+
+  .commodity-item h3 {
+    font-size: 1.3em;
+  }
+
+  .commodity-item p {
+    font-size: 0.9em;
+  }
+}
+
+</style>
+
+</head>
+
+
+<body> 
+
+    <div class="logo">
+        <div class="logoimg"><img src="/templates/static/images/logo.jpeg" alt=""></div>
+        <div class="logotext">FarmVista</div>
+    </div>
+
+    <nav>
+      <div class="nav-2"><a href="governmentschemes.html">Government Schemes</a></div> 
+      <div class="nav-2"><a href="predict.html">Predict Crop Price</a></div>
+      <div class="nav-2"><a href="crop_statistics.html">Crop Sowing Guide</a></div>
+      <div class="nav-2"><a href="help.html">Government websites</a></div>
+      <div class="nav-2"><a href="contact.html">contact</a></div>
+    </nav>
+
+
+<main>
+  <div id="mycarousel" class="mycarousel">
+    <div class="carousel-image">
+        <img src="/templates/static/images/wp9684694-indian-agriculture-wallpapers.jpg" alt="Image 1" class="img-fluid">
+        <img src="/templates/static/images/image2.jpg" alt="Image 2" class="img-fluid">
+        <img src="/templates/static/images/grassbackgroundimg.jpg" alt="Image 3" class="img-fluid">
+        <img src="/templates/static/images/image4.jpg" alt="Image 4" class="img-fluid">
+        <img src="/templates/static/images/image5.jpg" alt="Image 5" class="img-fluid">
+        <img src="/templates/static/images/image6.jpg" alt="Image 6" class="img-fluid">
+        <img src="/templates/static/images/image7.jpg" alt="Image 7" class="img-fluid">
+        <img src="/templates/static/images/image8.jpg" alt="Image 8" class="img-fluid">
+    </div>
+    <div class="next_prevbtn">
+        <button id="prev" class="prev">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <button id="next" class="next">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+</div>
+
+<script>
+  const prevButton = document.getElementById('prev');
+  const nextButton = document.getElementById('next');
+  const carouselImages = document.querySelector('.carousel-image');
+  const images = document.querySelectorAll('.carousel-image img');
+  let currentIndex = 0;
+  
+  function showImage(index) {
+      const offset = -index * 100; // Assuming 100% width per image
+      carouselImages.style.transform = `translateX(${offset}%)`;
+  }
+  
+  function showNextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      showImage(currentIndex);
+  }
+  
+  function showPrevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      showImage(currentIndex);
+  }
+  
+  prevButton.addEventListener('click', showPrevImage);
+  nextButton.addEventListener('click', showNextImage);
+  
+  // Optional: Auto-slide functionality
+  setInterval(showNextImage,  10000); // Change image every 5 seconds
+  
+</script>
+
+<hr class="featurette-divider">
+
+<section id="commodities" class="commodities-section">
+  <h2>Initial 25 Commodities</h2>
+  <div class="commodities-grid">
+    
+ <!-- Wheat -->
+<div class="commodity-item">
+  <img src="/templates/static/images/wheat.jpeg" alt="Wheat">
+  <h3>Wheat</h3>
+  <p>Wheat is mainly grown in the winter season (Rabi) in Maharashtra, particularly in the districts of Pune, Nashik, and Ahmednagar. It requires well-drained loamy to clayey soils and thrives in cool and dry climates. Optimal temperature ranges from 10°C to 25°C, and it needs moderate irrigation, particularly at critical growth stages like tillering and grain filling.</p>
+  <p><strong>Market Demand:</strong> Wheat has a consistent demand in both domestic and international markets, especially for food processing industries.</p>
+  <p><strong>Pests/Diseases:</strong> Common issues include rust, smut, and aphids, which can be managed through timely spraying of fungicides and insecticides.</p>
+</div>
+
+<!-- Rice -->
+<div class="commodity-item">
+  <img src="/templates/static/images/rice.jpg" alt="Rice">
+  <h3>Rice</h3>
+  <p>Rice is a Kharif crop, predominantly grown in the Konkan region, including districts like Ratnagiri, Sindhudurg, and parts of Vidarbha. It requires clayey soil that retains water, as rice is typically grown in flooded fields. Ideal temperature ranges between 20°C and 35°C, with high humidity and substantial water availability throughout its growing period.</p>
+  <p><strong>Market Demand:</strong> High domestic consumption with significant export potential, especially for Basmati varieties.</p>
+  <p><strong>Pests/Diseases:</strong> Rice is prone to pests like stem borers and diseases like blast and sheath blight, requiring integrated pest management (IPM).</p>
+</div>
+
+<!-- Barley -->
+<div class="commodity-item">
+  <img src="/templates/static/images/barley.jpg" alt="Barley">
+  <h3>Barley</h3>
+  <p>Barley is grown in Maharashtra's dry and cooler regions such as Pune and Ahmednagar. It prefers well-drained loamy soils and requires minimal water compared to other cereals. The crop is mainly sown in the Rabi season and thrives in temperatures between 15°C and 25°C.</p>
+  <p><strong>Market Demand:</strong> Barley is used in the brewing industry and as animal feed, with rising demand for malt production.</p>
+  <p><strong>Pests/Diseases:</strong> Barley can be affected by diseases like leaf rust and powdery mildew, which can be controlled through resistant varieties and fungicide applications.</p>
+</div>
+
+<!-- Maize -->
+<div class="commodity-item">
+  <img src="/templates/static/images/maize.jpeg.jpg" alt="Maize">
+  <h3>Maize</h3>
+  <p>Maize is widely grown across Maharashtra, especially in the regions of Marathwada and Vidarbha. It prefers well-drained loamy to sandy soils and needs warm temperatures between 21°C and 27°C. Maize can be grown during both Kharif and Rabi seasons, and it requires moderate water, particularly during flowering and grain-filling stages.</p>
+  <p><strong>Market Demand:</strong> Maize has diverse uses, including as food, fodder, and in the production of corn oil, starch, and ethanol.</p>
+  <p><strong>Pests/Diseases:</strong> Common pests include stem borers and fall armyworms; diseases like downy mildew and leaf blight are also prevalent.</p>
+</div>
+
+<!-- Soybeans -->
+<div class="commodity-item">
+  <img src="/templates/static/images/soyabean.jpg" alt="Soybeans">
+  <h3>Soybeans</h3>
+  <p>Soybeans are primarily grown in the Vidarbha and Marathwada regions of Maharashtra. They require well-drained loamy soils with good organic content and thrive in warm and humid conditions. The optimal temperature range is between 20°C and 30°C, and soybeans need moderate water, particularly during flowering and pod development stages.</p>
+  <p><strong>Market Demand:</strong> High demand for soybeans in the production of oil, animal feed, and various food products.</p>
+  <p><strong>Pests/Diseases:</strong> Major concerns include soybean rust and stem fly; proper crop rotation and resistant varieties are recommended.</p>
+</div>
+
+<!-- Cotton -->
+<div class="commodity-item">
+  <img src="/templates/static/images/cotton.jpg" alt="Cotton">
+  <h3>Cotton</h3>
+  <p>Cotton is predominantly cultivated in the Vidarbha and Marathwada regions. It requires black cotton soil, which has high moisture retention capacity. Cotton grows best in a warm climate with temperatures between 25°C and 35°C. The crop needs moderate water, particularly during the flowering and boll formation stages.</p>
+  <p><strong>Market Demand:</strong> Cotton is in high demand for the textile industry, both in India and internationally.</p>
+  <p><strong>Pests/Diseases:</strong> Bollworm is a significant pest, often managed by Bt cotton varieties and integrated pest management practices.</p>
+</div>
+
+<!-- Sugarcane -->
+<div class="commodity-item">
+  <img src="/templates/static/images/sugarcane.jpg" alt="Sugarcane">
+  <h3>Sugarcane</h3>
+  <p>Sugarcane is extensively grown in western Maharashtra, including districts like Pune, Satara, and Kolhapur. It thrives in deep, fertile alluvial soil with good drainage. Ideal temperatures range between 20°C and 35°C, and sugarcane requires a large amount of water, making it suitable for regions with assured irrigation facilities.</p>
+  <p><strong>Market Demand:</strong> Sugarcane is crucial for sugar production and by-products like ethanol and bagasse.</p>
+  <p><strong>Pests/Diseases:</strong> Sugarcane is prone to pests like stem borers and diseases like red rot, which require vigilant monitoring and control measures.</p>
+</div>
+
+<!-- Groundnut -->
+<div class="commodity-item">
+  <img src="/templates/static/images/groundnut.jpg" alt="Groundnut">
+  <h3>Groundnut</h3>
+  <p>Groundnut is mainly grown in the regions of Konkan and Marathwada. It prefers sandy loam to loamy soils with good drainage. Groundnut thrives in warm climates with temperatures ranging between 25°C and 30°C. The crop needs moderate water, particularly during the pegging and pod-filling stages.</p>
+  <p><strong>Market Demand:</strong> Groundnuts are in demand for oil extraction, food products, and snacks.</p>
+  <p><strong>Pests/Diseases:</strong> Groundnut is susceptible to pests like aphids and diseases like leaf spot, often managed through crop rotation and fungicides.</p>
+</div>
+
+<!-- Mustard -->
+<div class="commodity-item">
+  <img src="/templates/static/images/mustard.jpg" alt="Mustard">
+  <h3>Mustard</h3>
+  <p>Mustard is a Rabi crop grown in Maharashtra, particularly in areas like Nashik and Pune. It prefers well-drained sandy loam to loam soils and requires a cool climate with temperatures between 10°C and 25°C. Mustard needs minimal water, mainly during the flowering and pod-filling stages.</p>
+  <p><strong>Market Demand:</strong> Mustard is widely used for oil extraction and as a condiment.</p>
+  <p><strong>Pests/Diseases:</strong> Common issues include aphids and white rust; crop rotation and resistant varieties are effective management strategies.</p>
+</div>
+
+<!-- Jute -->
+<div class="commodity-item">
+  <img src="/templates/static/images/jute.jpg" alt="Jute">
+  <h3>Jute</h3>
+  <p>Jute is not commonly grown in Maharashtra due to its climatic requirements. It thrives in warm and humid climates with high rainfall, typically in alluvial soils, making it more suitable for regions like West Bengal and Assam.</p>
+  <p><strong>Market Demand:</strong> Jute is essential for making burlap sacks, ropes, and other biodegradable products.</p>
+  <p><strong>Pests/Diseases:</strong> Jute is susceptible to pests like stem borer and diseases like root rot, requiring careful monitoring.</p>
+</div>
+
+<!-- Tobacco -->
+<div class="commodity-item">
+  <img src="/templates/static/images/tobacco.jpeg" alt="Tobacco">
+  <h3>Tobacco</h3>
+  <p>Tobacco is cultivated in specific parts of Maharashtra, such as the districts of Kolhapur and Sangli. It prefers well-drained sandy loam soils and thrives in a warm climate with temperatures ranging from 20°C to 30°C. Tobacco requires moderate water, especially during the leaf development stage.</p>
+  <p><strong>Market Demand:</strong> Tobacco is in demand for both domestic consumption and export, mainly for cigarette production.</p>
+  <p><strong>Pests/Diseases:</strong> Common pests include aphids and diseases like mosaic virus, managed through crop rotation and resistant varieties.</p>
+</div>
+
+<!-- Coffee -->
+<div class="commodity-item">
+  <img src="/templates/static/images/coffee.jpeg.jpg" alt="Coffee">
+  <h3>Coffee</h3>
+  <p>Coffee cultivation is limited in Maharashtra and is more common in Karnataka. However, small-scale cultivation can be found in the Western Ghats region, where the climate is suitable. Coffee requires well-drained loamy soil with good organic content and thrives in a cool, humid climate with temperatures between 15°C and 28°C.</p>
+  <p><strong>Market Demand:</strong> High demand in the domestic market and significant export potential, particularly for specialty coffee varieties.</p>
+  <p><strong>Pests/Diseases:</strong> Coffee is prone to pests like coffee berry borer and diseases like coffee leaf rust, requiring integrated pest management (IPM) strategies.</p>
+</div>
+
+<!-- Tea -->
+<div class="commodity-item">
+  <img src="/templates/static/images/tea.jpeg" alt="Tea">
+  <h3>Tea</h3>
+  <p>Tea is not commonly grown in Maharashtra but is suitable for the high-altitude regions of the Western Ghats if cultivated. It prefers well-drained loamy soils and thrives in a cool, humid climate with temperatures ranging from 18°C to 30°C. Regular rainfall is essential for tea cultivation.</p>
+  <p><strong>Market Demand:</strong> Tea is in high demand both domestically and for export, especially for high-quality and organic varieties.</p>
+  <p><strong>Pests/Diseases:</strong> Tea is susceptible to pests like tea mosquito bug and diseases like blister blight, which can be managed through IPM practices.</p>
+</div>
+
+<!-- Rubber -->
+<div class="commodity-item">
+  <img src="/templates/static/images/rubber.jpg" alt="Rubber">
+  <h3>Rubber</h3>
+  <p>Rubber is not typically grown in Maharashtra. It requires a tropical climate with high humidity and well-drained soils, making regions like Kerala and Tamil Nadu more suitable for rubber cultivation.</p>
+  <p><strong>Market Demand:</strong> Rubber is in high demand for manufacturing tires, footwear, and other industrial products.</p>
+  <p><strong>Pests/Diseases:</strong> Rubber plantations are prone to pests like aphids and diseases like powdery mildew, requiring effective pest management strategies.</p>
+</div>
+
+<!-- Spices -->
+<div class="commodity-item">
+  <img src="/templates/static/images/spices.jpg" alt="Spices">
+  <h3>Spices</h3>
+  <p>Spices such as turmeric, black pepper, and ginger are grown in the hilly regions of Maharashtra, particularly in the Western Ghats. These spices require well-drained loamy soils rich in organic matter and a warm, humid climate. They also need moderate rainfall or irrigation.</p>
+  <p><strong>Market Demand:</strong> Spices have a robust market demand both domestically and for export, particularly for organic and high-quality varieties.</p>
+  <p><strong>Pests/Diseases:</strong> Spices are prone to pests like aphids and diseases like root rot, which can be managed through IPM and organic farming practices.</p>
+</div>
+
+<!-- Fruits -->
+<div class="commodity-item">
+  <img src="/templates/static/images/fruits.jpeg.jpg" alt="Fruits">
+  <h3>Fruits</h3>
+  <p>Maharashtra is a major producer of fruits like mangoes, bananas, grapes, and oranges. These fruits are grown in regions like Ratnagiri (mangoes), Jalgaon (bananas), and Nashik (grapes). Each fruit type has specific soil and climate requirements, but generally, they need well-drained soils, moderate temperatures, and adequate water supply.</p>
+  <p><strong>Market Demand:</strong> High domestic and export demand, particularly for fresh fruits and processed products like juices and dried fruits.</p>
+  <p><strong>Pests/Diseases:</strong> Common pests include fruit flies and diseases like anthracnose, managed through IPM and regular monitoring.</p>
+</div>
+
+<!-- Vegetables -->
+<div class="commodity-item">
+  <img src="/templates/static/images/vegetables.jpg" alt="Vegetables">
+  <h3>Vegetables</h3>
+  <p>Vegetables such as tomatoes, potatoes, and onions are widely grown across Maharashtra. They prefer well-drained loamy soils and require regular irrigation. Vegetables thrive in a range of climates, with different crops having specific temperature and water needs.</p>
+  <p><strong>Market Demand:</strong> Strong demand for fresh vegetables in local markets, with potential for export, particularly for organic produce.</p>
+  <p><strong>Pests/Diseases:</strong> Common issues include aphids, blight, and mosaic viruses, which require vigilant monitoring and control.</p>
+</div>
+
+<!-- Pulses -->
+<div class="commodity-item">
+  <img src="/templates/static/images/pulses.jpeg.jpg" alt="Pulses">
+  <h3>Pulses</h3>
+  <p>Pulses like tur (pigeon pea), moong (green gram), and chana (chickpea) are commonly grown in Maharashtra, particularly in the Vidarbha and Marathwada regions. They require well-drained loamy soils and grow well in semi-arid conditions. Pulses are also important for improving soil fertility through nitrogen fixation.</p>
+  <p><strong>Market Demand:</strong> High domestic consumption and export potential, particularly for organic and high-protein varieties.</p>
+  <p><strong>Pests/Diseases:</strong> Common pests include pod borers and diseases like wilt, managed through crop rotation and resistant varieties.</p>
+</div>
+
+<!-- Oilseeds -->
+<div class="commodity-item">
+  <img src="/templates/static/images/oilseed.jpeg" alt="Oilseeds">
+  <h3>Oilseeds</h3>
+  <p>Oilseeds such as sunflower, soybean, and groundnut are widely cultivated in Maharashtra. These crops require well-drained loamy soils and thrive in warm climates. They need moderate water, particularly during the flowering and seed-filling stages.</p>
+  <p><strong>Market Demand:</strong> High demand for oil extraction, with strong potential for export, particularly for organic and high-quality oilseeds.</p>
+  <p><strong>Pests/Diseases:</strong> Common pests include aphids and diseases like rust, managed through IPM and resistant varieties.</p>
+</div>
+
+<!-- Sugar Beet -->
+<div class="commodity-item">
+  <img src="/templates/static/images/sugarbeet.jpeg.jpg" alt="Sugar Beet">
+  <h3>Sugar Beet</h3>
+  <p>Sugar beet is not widely cultivated in Maharashtra. It requires cool temperate climates and well-drained loamy soils. Regions with assured irrigation and lower temperatures would be more suitable for sugar beet cultivation.</p>
+  <p><strong>Market Demand:</strong> Sugar beet is primarily used for sugar extraction, with growing interest in its use for biofuel production.</p>
+  <p><strong>Pests/Diseases:</strong> Sugar beet is susceptible to pests like root aphids and diseases like rhizomania, requiring vigilant management.</p>
+</div>
+
+<!-- Potato -->
+<div class="commodity-item">
+  <img src="/templates/static/images/potato.jpeg" alt="Potato">
+  <h3>Potato</h3>
+  <p>Potatoes are grown in the cooler regions of Maharashtra, such as Satara and Pune. They require well-drained sandy loam soils and thrive in cool temperatures ranging from 15°C to 20°C. Potatoes need regular watering, especially during the tuber formation stage.</p>
+  <p><strong>Market Demand:</strong> High demand in the food processing industry, particularly for chips and fries, with strong potential for export.</p>
+  <p><strong>Pests/Diseases:</strong> Potatoes are prone to pests like potato tuber moth and diseases like late blight, requiring effective management strategies.</p>
+</div>
+
+<!-- Onion -->
+<div class="commodity-item">
+  <img src="/templates/static/images/onion.jpeg" alt="Onion">
+  <h3>Onion</h3>
+  <p>Onions are a major crop in Maharashtra, particularly in Nashik, which is known as the onion capital of India. They require well-drained loamy to sandy loam soils and thrive in temperatures between 15°C and 25°C. Onions need consistent water supply but require well-drained fields to avoid waterlogging.</p>
+  <p><strong>Market Demand:</strong> High domestic consumption with significant export potential, particularly during off-season periods in other countries.</p>
+  <p><strong>Pests/Diseases:</strong> Common issues include thrips and diseases like purple blotch, which can be managed through IPM and regular monitoring.</p>
+</div>
+<!-- Bajra (Pearl Millet) -->
+<div class="commodity-item">
+  <img src="/templates/static/images/bajra.jpeg" alt="Bajra (Pearl Millet)">
+  <h3>Bajra (Pearl Millet)</h3>
+  <p>Bajra, or pearl millet, is primarily grown in the arid and semi-arid regions of Maharashtra, such as Marathwada and Vidarbha. It thrives in sandy loam to loamy soils with good drainage and can withstand high temperatures, making it suitable for areas with limited rainfall. Optimal temperature ranges between 25°C and 30°C.</p>
+  <p><strong>Market Demand:</strong> Bajra is valued for its nutritional content and is in demand for food products like flour, as well as for fodder.</p>
+  <p><strong>Pests/Diseases:</strong> Bajra is susceptible to pests like shoot fly and diseases like downy mildew, which can be managed through resistant varieties and timely sowing.</p>
+</div>
+
+<!-- Sorghum (Jowar) -->
+<div class="commodity-item">
+  <img src="/templates/static/images/jowar.jpeg" alt="Sorghum (Jowar)">
+  <h3>Sorghum (Jowar)</h3>
+  <p>Sorghum, or Jowar, is widely cultivated in Maharashtra's dry regions, such as Marathwada and Vidarbha. It prefers well-drained loamy to sandy loam soils and can tolerate drought, making it ideal for regions with irregular rainfall. Sorghum is grown during both Kharif and Rabi seasons, with an optimal temperature range of 25°C to 32°C.</p>
+  <p><strong>Market Demand:</strong> Sorghum is used for food, fodder, and industrial purposes, with rising demand for gluten-free products.</p>
+  <p><strong>Pests/Diseases:</strong> Common pests include stem borers and diseases like grain mold, managed through crop rotation and IPM practices.</p>
+</div>
+
+<!-- Chickpea (Gram) -->
+<div class="commodity-item">
+  <img src="/templates/static/images/chickpea.jpeg" alt="Chickpea (Gram)">
+  <h3>Chickpea (Gram)</h3>
+  <p>Chickpea, also known as gram or chana, is mainly grown in Maharashtra's Vidarbha and Marathwada regions. It thrives in well-drained loamy soils and requires a cool climate with temperatures between 15°C and 25°C. Chickpea is a Rabi crop and is well-suited for areas with minimal irrigation.</p>
+  <p><strong>Market Demand:</strong> Chickpea is in high demand for domestic consumption and export, particularly for making flour (besan) and snacks.</p>
+  <p><strong>Pests/Diseases:</strong> Common issues include pod borers and diseases like wilt and Ascochyta blight, which can be controlled through resistant varieties and crop rotation.</p>
+</div>
+
+  </div>
+</section>
+
+
+
+    <!-- END -->
+
+  </div>
+
+
+  <!-- FOOTER -->
+  <footer style="background-color: rgba(14, 107, 5);;"  class=" text-center text-white">
+    <div style="background-color:rgba(0, 0, 0, 0.2);" class="footerblock">
+       <img src="/templates/static/images/farmwheat.jpg" alt="" srcset="">
+       <img src="/templates/static/images/irrigation-pradhanmantri-sinchan-yojna-800x445.jpg" alt="" srcset="">
+       <img src="/templates/static/images/plantgrowing.jpg" alt="" srcset="">
+       <img src="/templates/static/images/farmerlogo.avif" alt="" srcset="">
+       <img src="/templates/static/images/plantgrowing.jpg" alt="" srcset="">
+       <img src="/templates/static/images/irrigation-pradhanmantri-sinchan-yojna-800x445.jpg" alt="" srcset="">
+    </div>
+
+    <section class="mb-4 text-center">
+      <blockquote class="blockquote">
+        <p class="mb-0 font-extrabold" style="font-size: 1.8em; font-weight: 600; font-style: Helvetica ; color: #F5F5DC;">
+          Agriculture is the backbone of India, where every seed sown is a step towards feeding the future.
+        </p>
+      </blockquote>
+    </section>
+      
+    </div>
+   
+    
+  </footer>
+<script src="/templates/static/script/homepagejs.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</main>
+
+</body>
+</html>
